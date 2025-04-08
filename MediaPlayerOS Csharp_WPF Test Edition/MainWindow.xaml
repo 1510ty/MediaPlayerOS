@@ -1,0 +1,17 @@
+﻿<Window x:Class="MediaPlayerOS_Csharp_WPF_Test_Edition.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaPlayerOS_Csharp_WPF_Test_Edition"
+        mc:Ignorable="d"
+        Title="MainWindow" Width="1920" Height="1080">
+    <Viewbox>
+        <Grid Width="1920" Height="1080">
+            <Button Content="スタート" Margin="10,1015,1754,10" RenderTransformOrigin="0.403,0.475" Click="StartButton_Click"/>
+            <Grid x:Name="StartMenu" Visibility="Collapsed" Margin="10,10,1315,70">
+                <Button Content="シャットダウン" HorizontalAlignment="Left" Margin="10,955,0,0" VerticalAlignment="Top" Height="35" Width="97" Click="ShutdownButton_Click"/>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>
