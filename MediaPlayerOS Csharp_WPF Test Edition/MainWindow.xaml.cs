@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -39,6 +40,30 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
         private void ShutdownButton_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void WinRestartButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "shutdown.exe",
+                Arguments = "/r /t 0",      // /r = 再起動, /t 0 = 待ち時間ゼロ
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            Process.Start(psi);
+        }
+
+        private void WinShutdownButton_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "shutdown.exe",
+                Arguments = "/s /t 0",      // /r = 再起動, /t 0 = 待ち時間ゼロ
+                UseShellExecute = false,
+                CreateNoWindow = true
+            };
+            Process.Start(psi);
         }
     }
 }

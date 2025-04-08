@@ -9,8 +9,10 @@
     <Viewbox>
         <Grid Width="1920" Height="1080">
             <Button Content="スタート" Margin="10,1015,1754,10" RenderTransformOrigin="0.403,0.475" Click="StartButton_Click"/>
-            <Grid x:Name="StartMenu" Visibility="Collapsed" Margin="10,10,1315,70">
-                <Button Content="シャットダウン" HorizontalAlignment="Left" Margin="10,955,0,0" VerticalAlignment="Top" Height="35" Width="97" Click="ShutdownButton_Click"/>
+            <Grid x:Name="StartMenu"  Margin="10,10,1315,70">
+                <Button Content="シャットダウン" HorizontalAlignment="Left" Margin="10,955,0,0" VerticalAlignment="Top" Height="35" Width="100" Click="ShutdownButton_Click"/>
+                <Button Content="Windowsを再起動" HorizontalAlignment="Left" Margin="10,915,0,0" VerticalAlignment="Top" Height="35" Width="100" Click="WinRestartButton_Click"/>
+                <Button Content="Windowsをシャットダウン" HorizontalAlignment="Left" Margin="10,876,0,0" VerticalAlignment="Top" Height="35" Width="100" FontSize="9" Click="WinShutdownButton_Click"/>
             </Grid>
         </Grid>
     </Viewbox>
