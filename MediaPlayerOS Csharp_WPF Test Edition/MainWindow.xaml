@@ -16,7 +16,7 @@
 
             </Grid>
 
-            <Grid x:Name="Main">
+            <Grid x:Name="Main" Visibility="Collapsed">
                 <Button Content="スタート" Margin="10,1015,1754,10" RenderTransformOrigin="0.403,0.475" Click="StartButton_Click"/>
                 <Grid x:Name="StartMenu"  Margin="10,10,1315,70">
                     <Button Content="シャットダウン" HorizontalAlignment="Left" Margin="10,955,0,0" VerticalAlignment="Top" Height="35" Width="100" Click="ShutdownButton_Click"/>
