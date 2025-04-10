@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,7 +54,7 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
             Main.Visibility = Visibility.Visible;
         }
 
-        private async void ShutdownMediaPlayerOS()
+        private async void ShutdownMediaPlayerOS(string Exitcode)
         {
             StartingorShutdownText.Content = "Shutdonw...";
             Main.Visibility = Visibility.Collapsed;
@@ -74,7 +75,15 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
 
             await Task.Delay(700); // フェードアウト完了まで待機
 
-            Application.Current.Shutdown();
+            if (Exitcode == "1")
+            {
+                Process.Start(@"MediaPlayerOS Csharp_WPF Test Edition.exe");
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                Application.Current.Shutdown();
+            }
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
@@ -91,8 +100,21 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
 
         private void ShutdownButton_Click(object sender, RoutedEventArgs e)
         {
-            ShutdownMediaPlayerOS();
+            ShutdownMediaPlayerOS("0");
         }
+
+        private void RestartButton_Click(object sender, RoutedEventArgs e)
+        {
+            RestartMediaPlayerOS();
+        }
+
+        private void RestartMediaPlayerOS()
+        {
+            ShutdownMediaPlayerOS("1");
+        }
+
+        
+
 
     }
 }

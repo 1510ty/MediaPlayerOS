@@ -9,17 +9,18 @@
     <Viewbox>
         <Grid Width="1920" Height="1080">
 
-            <Grid x:Name="StartStop">
+            <Grid x:Name="StartStop" Visibility="Collapsed">
                 <ProgressBar HorizontalAlignment="Center" Height="72" Margin="0,998,0,0" VerticalAlignment="Top" Width="1900" x:Name="StartStopProgress"/>
                 <Label Content="MediaPlayerOS" FontSize="120" Margin="0,0,1004,903"/>
                 <Label Content="Starting..." x:Name="StartingorShutdownText" HorizontalAlignment="Left" Margin="10,160,0,0" VerticalAlignment="Top" Height="120" Width="480" FontSize="75" />
 
             </Grid>
 
-            <Grid Visibility="Collapsed" x:Name="Main">
+            <Grid x:Name="Main">
                 <Button Content="スタート" Margin="10,1015,1754,10" RenderTransformOrigin="0.403,0.475" Click="StartButton_Click"/>
                 <Grid x:Name="StartMenu"  Margin="10,10,1315,70">
                     <Button Content="シャットダウン" HorizontalAlignment="Left" Margin="10,955,0,0" VerticalAlignment="Top" Height="35" Width="100" Click="ShutdownButton_Click"/>
+                    <Button Content="再起動" HorizontalAlignment="Left" Margin="10,915,0,0" VerticalAlignment="Top" Height="35" Width="100" Click="RestartButton_Click"/>
                 </Grid>
 
             </Grid>
