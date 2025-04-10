@@ -56,7 +56,7 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
 
         private async void ShutdownMediaPlayerOS(string Exitcode)
         {
-            StartingorShutdownText.Content = "Shutdonw...";
+            StartingorShutdownText.Content = "Shutdown...";
             Main.Visibility = Visibility.Collapsed;
             StartStop.Visibility = Visibility.Visible;
             StartStopProgressValue = 0;
