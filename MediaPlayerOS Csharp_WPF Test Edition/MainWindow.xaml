@@ -30,9 +30,9 @@
                     <Button Content="電源" Click="DengenButton_Click" HorizontalAlignment="Left" Margin="10,925,0,0" VerticalAlignment="Top" Height="65" Width="135"/>
                 </Grid>
                 <Canvas Name="MainCanvas" Width="0" Height="0">
-                    <!-- 動的にFakeWindowを追加 -->
+                    <!-- 動的にBrowserWindowを追加 -->
                 </Canvas>
-                <Button Content="TestWindowを表示" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="109" Width="200" Click="TestWindowViewButton_Click"/>
+                <Button Content="ブラウザ(Chrome)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="109" Width="200" Click="BrowserWindowViewButton_Click"/>
             </Grid>
 
         </Grid>

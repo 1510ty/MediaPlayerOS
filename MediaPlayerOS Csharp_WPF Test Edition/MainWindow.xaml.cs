@@ -140,12 +140,12 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
 
         }
 
-        private void TestWindowViewButton_Click(object sender, RoutedEventArgs e)
+        private void BrowserWindowViewButton_Click(object sender, RoutedEventArgs e)
         {
-            var testWindow = new TestWindow();
-            Canvas.SetLeft(testWindow, 100);
-            Canvas.SetTop(testWindow, 100);
-            MainCanvas.Children.Add(testWindow);
+            var browserWindow = new BrowserWindow();
+            Canvas.SetLeft(browserWindow, 100);
+            Canvas.SetTop(browserWindow, 100);
+            MainCanvas.Children.Add(browserWindow);
 
         }
     }

@@ -8,7 +8,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <Authors>1510ty</Authors>
-    <Version>1.4.0</Version>
+    <Version>1.5.0</Version>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CefSharp.Wpf.NETCore" Version="135.0.170" />
+  </ItemGroup>
 
 </Project>

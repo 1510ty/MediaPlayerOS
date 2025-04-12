@@ -1,11 +1,11 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows;
-using System.Windows.Controls.Primitives;
+using CefSharp;
 
 namespace MediaPlayerOS_Csharp_WPF_Test_Edition
 {
-    public partial class TestWindow
+    public partial class BrowserWindow
     {
         private bool _isDragging = false;
         private Point _startPoint;
@@ -18,9 +18,29 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
         private double _originalWidth;
         private double _originalHeight;
 
-        public TestWindow()
+        public BrowserWindow()
         {
             InitializeComponent();
+            Browser.AddressChanged += OnBrowserAddressChanged;
+            Browser.Focus(); // IME（日本語入力）を安定させる
+        }
+
+        private void NavigateButton_Click(object sender, RoutedEventArgs e)
+        {
+            string url = AddressBar.Text.Trim();
+            if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+            {
+                url = "https://" + url;
+            }
+
+            if (Uri.TryCreate(url, UriKind.Absolute, out Uri uri))
+            {
+                Browser.Load(uri.ToString());
+            }
+            else
+            {
+                MessageBox.Show("正しいURLを入力してください。", "エラー", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
         }
 
         private void TitleBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -36,7 +56,7 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
             }
         }
 
-        private void TestWindow_MouseMove(object sender, MouseEventArgs e)
+        private void BrowserWindow_MouseMove(object sender, MouseEventArgs e)
         {
             if (_isDragging)
             {
@@ -53,7 +73,7 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
             }
         }
 
-        private void TestWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        private void BrowserWindow_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
             _isDragging = false;
             this.ReleaseMouseCapture();
@@ -72,7 +92,7 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
 
         private void ResizeGrip_MouseMove(object sender, MouseEventArgs e)
         {
-            if (_isResizing)
+            if (_isResizing && e.LeftButton == MouseButtonState.Pressed)
             {
                 Point currentPos = e.GetPosition(null);
                 double offsetX = currentPos.X - _resizeStartPoint.X;
@@ -91,6 +111,12 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
+            if (Browser != null)
+            {
+                Browser.Dispose(); // これが超重要
+                Browser = null;
+            }
+
             var parent = this.Parent as Canvas;
             if (parent != null)
             {
@@ -98,7 +124,7 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
             }
         }
 
-        private void TestWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void BrowserWindow_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             BringToFront();
 
@@ -121,5 +147,13 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
             Panel.SetZIndex(this, maxZ + 1);
         }
 
+        private void OnBrowserAddressChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            // UI スレッドで TextBox を更新
+            Dispatcher.Invoke(() =>
+            {
+                AddressBar.Text = e.NewValue as string;
+            });
+        }
     }
 }
