@@ -1,8 +1,10 @@
 ﻿using System.Diagnostics;
+using System.Printing.IndexedProperties;
 using System.Reflection;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -18,7 +20,9 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
     /// </summary>
     public partial class MainWindow : Window
     {
+
         private int StartStopProgressValue;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,7 +31,6 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
             this.ResizeMode = ResizeMode.NoResize;    // リサイズ不可
             this.WindowState = WindowState.Maximized; // 最大化（画面いっぱい)
             StartingMediaPlayerOS();
-
 
         }
 
@@ -52,6 +55,7 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
 
             // 少し待ってから終了したい場合
             Main.Visibility = Visibility.Visible;
+
         }
 
         private async void ShutdownMediaPlayerOS(string Exitcode)
@@ -113,8 +117,36 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
             ShutdownMediaPlayerOS("1");
         }
 
-        
+        private void DengenButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (StartMenu_DengenGrid.Visibility == Visibility.Visible)
+            {
+                StartMenu_DengenGrid.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                StartMenu_DengenGrid.Visibility = Visibility.Visible;
+            }
+        }
 
+        private void CrashButton_Click(object sender, RoutedEventArgs e)
+        {
+            int zero = 0;
+            int result = 1 / zero; // DivideByZeroException が発生 → 未処理例外 → アプリがクラッシュ
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TestWindowViewButton_Click(object sender, RoutedEventArgs e)
+        {
+            var testWindow = new TestWindow();
+            Canvas.SetLeft(testWindow, 100);
+            Canvas.SetTop(testWindow, 100);
+            MainCanvas.Children.Add(testWindow);
+
+        }
     }
 }

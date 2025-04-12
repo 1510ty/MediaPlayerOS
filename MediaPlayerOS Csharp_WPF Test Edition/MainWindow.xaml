@@ -3,11 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MediaPlayerOS_Csharp_WPF_Test_Edition"
         mc:Ignorable="d"
         Title="MainWindow" Width="1920" Height="1080">
+
     <Viewbox>
         <Grid Width="1920" Height="1080">
+
+
 
             <Grid x:Name="StartStop" Visibility="Collapsed">
                 <ProgressBar HorizontalAlignment="Center" Height="72" Margin="0,998,0,0" VerticalAlignment="Top" Width="1900" x:Name="StartStopProgress"/>
@@ -18,12 +20,21 @@
 
             <Grid x:Name="Main" Visibility="Collapsed">
                 <Button Content="スタート" Margin="10,1015,1754,10" RenderTransformOrigin="0.403,0.475" Click="StartButton_Click"/>
-                <Grid x:Name="StartMenu"  Margin="10,10,1315,70">
-                    <Button Content="シャットダウン" HorizontalAlignment="Left" Margin="10,955,0,0" VerticalAlignment="Top" Height="35" Width="100" Click="ShutdownButton_Click"/>
-                    <Button Content="再起動" HorizontalAlignment="Left" Margin="10,915,0,0" VerticalAlignment="Top" Height="35" Width="100" Click="RestartButton_Click"/>
-                </Grid>
+                <Grid x:Name="StartMenu" Visibility="Collapsed" Margin="10,10,1208,70" >
+                    <Grid Margin="10,783,545,80" Visibility="Collapsed" x:Name="StartMenu_DengenGrid">
+                        <Button Content="シャットダウン" HorizontalAlignment="Center" Margin="0,89,0,0" VerticalAlignment="Top" Height="40" Width="100" Click="ShutdownButton_Click"/>
+                        <Button Content="再起動" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="100" Click="RestartButton_Click"/>
+                        <Button Content="クラッシュ" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="40" Width="100" Click="CrashButton_Click" />
 
+                    </Grid>
+                    <Button Content="電源" Click="DengenButton_Click" HorizontalAlignment="Left" Margin="10,925,0,0" VerticalAlignment="Top" Height="65" Width="135"/>
+                </Grid>
+                <Canvas Name="MainCanvas" Width="0" Height="0">
+                    <!-- 動的にFakeWindowを追加 -->
+                </Canvas>
+                <Button Content="TestWindowを表示" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="109" Width="200" Click="TestWindowViewButton_Click"/>
             </Grid>
+
         </Grid>
     </Viewbox>
 </Window>

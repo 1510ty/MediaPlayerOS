@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:MediaPlayerOS_Csharp_WPF_Test_Edition"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <DropShadowEffect x:Key="DropShadow" ShadowDepth="5" Color="Black" BlurRadius="10" Opacity="0.3"/>
     </Application.Resources>
 </Application>
