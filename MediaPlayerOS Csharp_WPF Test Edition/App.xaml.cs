@@ -3,6 +3,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
+using System.IO;
 using CefSharp;
 using CefSharp.Wpf;
 
@@ -22,10 +23,32 @@ namespace MediaPlayerOS_Csharp_WPF_Test_Edition
             // 非UIスレッドの未処理例外
             AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
 
+            string exeDir = AppDomain.CurrentDomain.BaseDirectory;
+            string subprocessPathPrimary = Path.Combine(exeDir, "CefSharp.BrowserSubprocess.exe");
+            string subprocessPathFallback = Path.Combine(exeDir, "runtimes", "win-x64", "native", "CefSharp.BrowserSubprocess.exe");
+
+            string subprocessPath;
+
+            if (File.Exists(subprocessPathPrimary))
+            {
+                subprocessPath = subprocessPathPrimary;
+            }
+            else if (File.Exists(subprocessPathFallback))
+            {
+                subprocessPath = subprocessPathFallback;
+            }
+            else
+            {
+                MessageBox.Show("CefSharp.BrowserSubprocess.exe が見つかりませんでした。\nアプリを終了します。", "エラー", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(1); // 強制終了
+                return;
+            }
+
             var settings = new CefSettings
             {
-                BrowserSubprocessPath = System.IO.Path.Combine(AppContext.BaseDirectory, @"runtimes\win-x64\native\CefSharp.BrowserSubprocess.exe")
+                BrowserSubprocessPath = subprocessPath
             };
+
             Cef.Initialize(settings);
 
             base.OnStartup(e);
