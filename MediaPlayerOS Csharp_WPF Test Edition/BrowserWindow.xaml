@@ -12,7 +12,8 @@
             <!-- タイトルバー -->
             <RowDefinition Height="30"/>
             <!-- アドレスバー -->
-            <RowDefinition/>
+            <RowDefinition Height="341*"/>
+            <RowDefinition Height="350*"/>
             <!-- ブラウザ本体 -->
         </Grid.RowDefinitions>
 
@@ -32,7 +33,7 @@
         </StackPanel>
 
         <!-- ブラウザ本体 -->
-        <cefSharp:ChromiumWebBrowser x:Name="Browser" Grid.Row="2" Address="https://www.google.com" />
+        <cefSharp:ChromiumWebBrowser x:Name="Browser" Grid.Row="2" Address="https://www.google.com" Grid.RowSpan="2" />
 
         <!-- サイズ変更ハンドル -->
         <Rectangle x:Name="ResizeGrip"
@@ -41,6 +42,6 @@
            Cursor="SizeNWSE"
            MouseLeftButtonDown="ResizeGrip_MouseLeftButtonDown"
            MouseMove="ResizeGrip_MouseMove"
-           MouseLeftButtonUp="ResizeGrip_MouseLeftButtonUp" Margin="1272,682,0,0" Grid.Row="2"/>
+           MouseLeftButtonUp="ResizeGrip_MouseLeftButtonUp" Grid.Row="3"/>
     </Grid>
 </UserControl>
